@@ -41,5 +41,3 @@ Each expense contains the following information:
 
 ## Project Status
 * Currently in Development
-
-🚧 Currently in development.
