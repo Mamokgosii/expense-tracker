@@ -1,27 +1,46 @@
-# expense-tracker
+# Expense Tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+A simple and intuitive expense tracking application built with Vue.js that helps users manage their spending by recording, viewing, editing, and categorising expenses.
 
-## Recommended IDE Setup
+## Goal
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Allow users to track their expenses and gain insights into how much they have spent over time.
 
-## Recommended Browser Setup
+## Features
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+* Add an expense
+* View all expenses
+* Edit an existing expense
+* Delete an expense
+* Filter expenses by category
+* View total expenses
 
-## Type Support for `.vue` Imports in TS
+## Expense Fields
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+Each expense contains the following information:
 
-## Customize configuration
+* **Description** – A brief description of the expense
+* **Amount** – The amount spent
+* **Category** – The category of the expense (e.g. Food, Transport, Utilities)
+* **Date** – The date on which the expense occurred
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Tech Stack
+
+* Vue 3
+* TypeScript
+* Pinia
+* Vite
+
+## Planned Enhancements
+
+* Form validation
+* Local storage persistence
+* Responsive user interface
+* Expense statistics and visualisations
+* Search and sorting functionality
+
+## Project Status
+* Currently in Development
 
 ## Project Setup
 
