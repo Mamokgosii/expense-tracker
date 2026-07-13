@@ -12,8 +12,32 @@ export const useExpenseStore = defineStore('expenses', () => {
     )
   )
 
+  function addExpense(expense: Expense) {
+    expenses.value.push(expense)
+  }
+ 
+  function deleteExpense(id: string) {
+    expenses.value = expenses.value.filter(
+      expense => expense.id !== id
+    )
+  }
+
+  function updateExpense(updatedExpense: Expense) {
+    const index = expenses.value.findIndex(
+      expense => expense.id === updatedExpense.id
+    )
+
+    if (index !== -1) {
+      expenses.value[index] = updatedExpense
+    }
+ }
+
   return {
     expenses,
     totalExpenses,
+    addExpense,
+    deleteExpense,
+    updateExpense,
   }
+
 })
