@@ -15,12 +15,17 @@ function handleDelete(id: string) {
 function handleEdit(expense: Expense) {
   selectedExpense.value = expense
 }
+
+function clearSelectedExpense() {
+  selectedExpense.value = null
+}
 </script>
 
 <template>
   <h1>Expense Tracker</h1>
   <ExpenseForm
   :selected-expense="selectedExpense"
+  @clear-selected="clearSelectedExpense"
   />
   <ExpenseList
   :expenses="expenseStore.expenses"

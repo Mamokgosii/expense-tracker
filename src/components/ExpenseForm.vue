@@ -1,17 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useExpenseStore } from '../stores/expenses'
 import type { Expense } from '../types/expense'
+
+const props = defineProps<{
+  selectedExpense: Expense | null
+}>()
+
+const emit = defineEmits<{
+  (e: 'clear-selected'): void
+}>()
+
+const expenseStore = useExpenseStore()
 
 const description = ref('')
 const amount = ref<number | null>(null)
 const category = ref('')
 const date = ref('')
-
-const expenseStore = useExpenseStore()
-const props = defineProps<{
-  selectedExpense: Expense | null
-}>()
 
 const categories = [
   'Food',
@@ -20,6 +25,27 @@ const categories = [
   'Utilities',
   'Shopping',
 ]
+
+watch(
+  () => props.selectedExpense,
+  (expense) => {
+    if (!expense) {
+      return
+    }
+
+    description.value = expense.description
+    amount.value = expense.amount
+    category.value = expense.category
+    date.value = expense.date
+  }
+)
+
+function resetForm() {
+  description.value = ''
+  amount.value = null
+  category.value = ''
+  date.value = ''
+}
 
 function handleSubmit() {
   if (
@@ -32,18 +58,22 @@ function handleSubmit() {
     return
   }
 
-  expenseStore.addExpense({
-    id: crypto.randomUUID(),
+  const expense: Expense = {
+    id: props.selectedExpense?.id ?? crypto.randomUUID(),
     description: description.value,
     amount: amount.value,
     category: category.value,
     date: date.value,
-  })
+  }
 
-  description.value = ''
-  amount.value = null
-  category.value = ''
-  date.value = ''
+  if (props.selectedExpense) {
+    expenseStore.updateExpense(expense)
+    emit('clear-selected')
+    } else {
+      expenseStore.addExpense(expense)
+  }
+
+  resetForm()
 }
 </script>
 
@@ -96,8 +126,8 @@ function handleSubmit() {
       />
     </div>
 
-    <button type="submit">
-      Add Expense
-    </button>
+  <button type="submit">
+  {{ props.selectedExpense ? 'Update Expense' : 'Add Expense' }}
+  </button>
   </form>
 </template>
