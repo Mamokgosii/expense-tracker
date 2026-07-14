@@ -1,9 +1,14 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
+import { useLocalStorage } from '../composables/useLocalStorage'
 import type { Expense } from '../types/expense'
 
 export const useExpenseStore = defineStore('expenses', () => {
-  const expenses = ref<Expense[]>([])
+  
+  const expenses = useLocalStorage<Expense[]>(
+  'expenses',
+  []
+)
 
   const totalExpenses = computed(() =>
     expenses.value.reduce(
