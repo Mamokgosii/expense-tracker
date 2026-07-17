@@ -9,7 +9,15 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: 'clear-selected'): void
+  (e: 'saved', message: string): void
 }>()
+
+const errors = ref({
+  description: '',
+  amount: '',
+  category: '',
+  date: '',
+})
 
 const expenseStore = useExpenseStore()
 
@@ -37,6 +45,13 @@ watch(
     amount.value = expense.amount
     category.value = expense.category
     date.value = expense.date
+
+    errors.value = {
+      description: '',
+      amount: '',
+      category: '',
+      date: '',
+    }
   }
 )
 
@@ -45,23 +60,56 @@ function resetForm() {
   amount.value = null
   category.value = ''
   date.value = ''
+
+   errors.value = {
+    description: '',
+    amount: '',
+    category: '',
+    date: '',
+  }
+}
+
+function validateForm() {
+  errors.value = {
+    description: '',
+    amount: '',
+    category: '',
+    date: '',
+  }
+
+  let isValid = true
+
+  if (!description.value.trim()) {
+    errors.value.description = 'Description is required.'
+    isValid = false
+  }
+
+  if (amount.value === null || amount.value <= 0) {
+    errors.value.amount = 'Enter a valid amount.'
+    isValid = false
+  }
+
+  if (!category.value) {
+    errors.value.category = 'Please select a category.'
+    isValid = false
+  }
+
+  if (!date.value) {
+    errors.value.date = 'Please choose a date.'
+    isValid = false
+  }
+
+  return isValid
 }
 
 function handleSubmit() {
-  if (
-    !description.value ||
-    amount.value === null ||
-    !category.value ||
-    !date.value
-  ) {
-    alert('Please fill in all fields.')
+  if (!validateForm()) {
     return
   }
-
   const expense: Expense = {
     id: props.selectedExpense?.id ?? crypto.randomUUID(),
     description: description.value,
-    amount: amount.value,
+    amount: amount.value!,
     category: category.value,
     date: date.value,
   }
@@ -69,8 +117,10 @@ function handleSubmit() {
   if (props.selectedExpense) {
     expenseStore.updateExpense(expense)
     emit('clear-selected')
+    emit('saved', 'Expense updated successfully!')
     } else {
-      expenseStore.addExpense(expense)
+      expenseStore.addExpense(expense) 
+      emit('saved', 'Expense added successfully!')
   }
 
   resetForm()
@@ -90,9 +140,16 @@ function handleSubmit() {
       <input
         id="description"
         v-model="description"
+        @input="errors.description = ''"
         type="text"
         placeholder="e.g. Groceries"
       />
+      <small
+        v-if="errors.description"
+        class="error"
+      >
+        {{ errors.description }}
+      </small>
     </div>
 
     <div class="form-group">
@@ -100,9 +157,16 @@ function handleSubmit() {
       <input
         id="amount"
         v-model="amount"
+        @input="errors.amount = ''"
         type="number"
         placeholder="e.g. 350"
       />
+      <small
+        v-if="errors.amount"
+        class="error"
+      >
+        {{ errors.amount }}
+      </small>
     </div>
 
     <div class="form-group">
@@ -111,6 +175,7 @@ function handleSubmit() {
       <select
         id="category"
         v-model="category"
+         @change="errors.category = ''"
       >
         <option value="">Select Category</option>
 
@@ -122,6 +187,12 @@ function handleSubmit() {
           {{ categoryOption }}
         </option>
       </select>
+      <small
+        v-if="errors.category"
+        class="error"
+      >
+        {{ errors.category }}
+      </small>
     </div>
 
     <div class="form-group">
@@ -130,8 +201,15 @@ function handleSubmit() {
       <input
         id="date"
         v-model="date"
+        @change="errors.date = ''"
         type="date"
       />
+      <small
+        v-if="errors.date"
+        class="error"
+      >
+        {{ errors.date }}
+      </small>
     </div>
 
     <button type="submit">
@@ -217,6 +295,13 @@ button:hover {
 
 button:active {
   transform: translateY(0);
+}
+
+.error {
+  display: block;
+  margin-top: 6px;
+  color: #dc2626;
+  font-size: 0.85rem;
 }
 
 @media (max-width: 768px) {
