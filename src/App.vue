@@ -6,14 +6,19 @@ import { useExpenseStore } from './stores/expenses'
 import TotalCard from './components/TotalCard.vue'
 import CategoryFilter from './components/CategoryFilter.vue'
 import ConfirmModal from './modals/ConfirmModal.vue'
+import Toast from './components/Toast.vue'
 import type { Expense } from './types/expense'
 
 const expenseStore = useExpenseStore()
 const selectedExpense = ref<Expense | null>(null)
 const selectedCategory = ref('All')
-const notification = ref('')
 const showDeleteModal = ref(false)
 const expenseToDelete = ref<Expense | null>(null)
+const showToast = ref(false)
+const toast = ref({
+  message: '',
+  type: 'success' as 'success' | 'info' | 'error',
+})
 
 const filteredExpenses = computed(() => {
   if (selectedCategory.value === 'All') {
@@ -25,6 +30,19 @@ const filteredExpenses = computed(() => {
   )
 })
 
+function showNotification(
+  message: string,
+  type: 'success' | 'info' | 'error'
+) {
+  toast.value.message = message
+  toast.value.type = type
+  showToast.value = true
+
+  setTimeout(() => {
+    showToast.value = false
+  }, 3000)
+}
+
 function handleDelete(expense: Expense) {
   expenseToDelete.value = expense
   showDeleteModal.value = true
@@ -34,9 +52,7 @@ function confirmDelete() {
   if (!expenseToDelete.value) return
 
   expenseStore.deleteExpense(expenseToDelete.value.id)
-
-  showNotification('Expense deleted successfully!')
-
+  showNotification('Expense deleted successfully!', 'error')
   showDeleteModal.value = false
   expenseToDelete.value = null
 }
@@ -58,24 +74,15 @@ function clearSelectedExpense() {
   selectedExpense.value = null
 }
 
-function showNotification(message: string) {
-  notification.value = message
-
-  setTimeout(() => {
-    notification.value = ''
-  }, 3000)
-}
 </script>
 <template>
   <div class="app">
     <h1>Expense Tracker</h1>
-
-      <div
-      v-if="notification"
-      class="notification"
-    >
-      {{ notification }}
-    </div>
+     <Toast
+      :show="showToast"
+      :message="toast.message"
+      :type="toast.type"
+    />
     <div class="dashboard">
 
       <div class="left-column">
@@ -88,7 +95,7 @@ function showNotification(message: string) {
         <ExpenseForm
           :selected-expense="selectedExpense"
           @clear-selected="clearSelectedExpense"
-          @saved="showNotification"
+          @saved="(message, type) => showNotification(message, type)"
         />
       </div>
 
@@ -135,17 +142,6 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 24px;
-}
-
-.notification {
-  background: #16a34a;
-  color: white;
-  padding: 14px 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-weight: 600;
-  text-align: center;
-  animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {

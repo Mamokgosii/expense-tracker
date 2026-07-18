@@ -9,7 +9,10 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: 'clear-selected'): void
-  (e: 'saved', message: string): void
+  (e: 'saved',
+   message: string,
+   type: 'success' | 'info'
+  ): void
 }>()
 
 const errors = ref({
@@ -117,10 +120,10 @@ function handleSubmit() {
   if (props.selectedExpense) {
     expenseStore.updateExpense(expense)
     emit('clear-selected')
-    emit('saved', 'Expense updated successfully!')
+    emit('saved', 'Expense updated successfully!', 'info')
     } else {
       expenseStore.addExpense(expense) 
-      emit('saved', 'Expense added successfully!')
+      emit('saved', 'Expense added successfully!', 'success')
   }
 
   resetForm()
