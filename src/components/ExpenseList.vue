@@ -14,7 +14,6 @@ const emit = defineEmits<{
 
 <template>
    <div class="expense-list">
-    <h2>Expenses</h2>
     <p
       v-if="expenses.length === 0"
       class="empty-state"
@@ -38,11 +37,6 @@ const emit = defineEmits<{
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 10px 25px rgba(0,0,0,.08);
-}
-
-.expense-list h2 {
-  margin-bottom: 20px;
-  color: #1f2937;
 }
 
 .empty-state {
