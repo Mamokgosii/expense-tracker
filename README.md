@@ -4,7 +4,7 @@ A responsive expense tracking application built with Vue 3, TypeScript and Pinia
 
 ## Live Demo
 
-Coming soon...
+https://expense-tracker-seven-kappa-46.vercel.app
 
 ## Project Overview
 
