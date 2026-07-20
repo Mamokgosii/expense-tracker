@@ -46,10 +46,13 @@ const emit = defineEmits<{
   inset: 0;
   background: rgba(17, 24, 39, 0.55);
   backdrop-filter: blur(4px);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   padding: 20px;
+
   z-index: 1000;
 }
 
@@ -57,10 +60,15 @@ const emit = defineEmits<{
   width: 420px;
   max-width: 100%;
   background: #ffffff;
+
   border-radius: 18px;
   padding: 28px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-  animation: popup 0.25s ease;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+
+  animation: popup .25s ease;
+
+  box-sizing: border-box;
 }
 
 .modal h2 {
@@ -74,7 +82,7 @@ const emit = defineEmits<{
   margin: 16px 0 28px;
   color: #6b7280;
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: .95rem;
 }
 
 .modal-actions {
@@ -86,13 +94,18 @@ const emit = defineEmits<{
 .cancel-btn,
 .delete-btn {
   min-width: 110px;
+  min-height: 44px;
+
   padding: 12px 20px;
+
   border-radius: 10px;
   border: none;
-  font-size: 0.95rem;
+
+  font-size: .95rem;
   font-weight: 600;
+
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all .2s ease;
 }
 
 .cancel-btn {
@@ -122,7 +135,7 @@ const emit = defineEmits<{
 @keyframes popup {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(-12px);
+    transform: scale(.95) translateY(-12px);
   }
 
   to {
@@ -131,9 +144,39 @@ const emit = defineEmits<{
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width:768px) {
+
   .modal {
-    padding: 22px;
+    width: 100%;
+    max-width: 500px;
+    padding: 24px;
+  }
+
+  .modal h2 {
+    font-size: 1.25rem;
+  }
+
+  .modal p {
+    font-size: .92rem;
+  }
+}
+
+
+@media (max-width:500px) {
+
+  .modal {
+    width: 100%;
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .modal h2 {
+    font-size: 1.15rem;
+  }
+
+  .modal p {
+    margin: 14px 0 22px;
+    font-size: .9rem;
   }
 
   .modal-actions {

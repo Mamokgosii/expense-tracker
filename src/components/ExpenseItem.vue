@@ -76,6 +76,7 @@ function formatDate(date: string) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   margin-bottom: 12px;
 }
 
@@ -95,8 +96,10 @@ function formatDate(date: string) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   margin-bottom: 18px;
   font-size: 0.9rem;
+  flex-wrap: wrap;
 }
 
 .category {
@@ -119,11 +122,12 @@ function formatDate(date: string) {
 
 .expense-actions button {
   border: none;
-  padding: 8px 18px;
+  padding: 10px 18px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   transition: 0.2s;
+  min-height: 44px;
 }
 
 .edit-btn {
@@ -142,5 +146,59 @@ function formatDate(date: string) {
 
 .delete-btn:hover {
   background: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .expense-item {
+    padding: 16px;
+  }
+
+  .expense-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .expense-header h3 {
+    font-size: 1rem;
+    word-break: break-word;
+  }
+
+  .amount {
+    font-size: 1.1rem;
+  }
+
+  .expense-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .expense-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .expense-actions button {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .expense-item {
+    padding: 14px;
+  }
+
+  .expense-actions {
+    flex-direction: column;
+  }
+
+  .expense-actions button {
+    width: 100%;
+  }
+
+  .category,
+  .expense-date {
+    font-size: 0.85rem;
+  }
 }
 </style>

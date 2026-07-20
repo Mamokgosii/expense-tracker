@@ -223,11 +223,12 @@ function handleSubmit() {
 <style scoped>
 .expense-form {
   background: #ffffff;
-  padding: 32px;
+  padding: 24px;
   border-radius: 16px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 2px 8px rgba(0,0,0,.06);
   transition: all 0.2s ease;
+  width: 86%;
 }
 
 .expense-form:hover {
@@ -237,8 +238,9 @@ function handleSubmit() {
 .expense-form h2 {
   margin-bottom: 24px;
   color: #1f2937;
-  font-size: 1.5rem;
+  font-size: clamp(1.3rem, 3vw, 1.5rem);
   font-weight: 700;
+  text-align: center;
 }
 
 .form-group {
@@ -255,7 +257,8 @@ label {
 input,
 select {
   width: 100%;
-  padding: 14px;
+  min-height: 46px;
+  padding: 12px 14px;
   font-size: 1rem;
   border: 1px solid #d1d5db;
   border-radius: 10px;
@@ -313,13 +316,46 @@ button:active {
   }
 
   .expense-form h2 {
-    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
   }
 
   input,
-  select,
+  select {
+    font-size: 16px;
+    padding: 12px;
+  }
+
   button {
-    font-size: 0.95rem;
+    margin-top: 16px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .expense-form {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .expense-form h2 {
+    font-size: 1.2rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
+  input,
+  select {
+    padding: 10px 12px;
+  }
+
+  .error {
+    font-size: 0.8rem;
   }
 }
 </style>

@@ -42,6 +42,7 @@ watch(selectedCategory, (category) => {
   border-radius: 16px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  width: 86%;
 }
 
 .category-filter label {
@@ -54,6 +55,7 @@ watch(selectedCategory, (category) => {
 
 .category-filter select {
   width: 100%;
+  min-height: 46px;
   padding: 12px 16px;
   border: 1px solid #d1d5db;
   border-radius: 10px;
@@ -62,6 +64,7 @@ watch(selectedCategory, (category) => {
   background: #ffffff;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .category-filter select:hover {
@@ -72,5 +75,36 @@ watch(selectedCategory, (category) => {
   outline: none;
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+@media (max-width: 768px) {
+  .category-filter {
+    padding: 20px;
+  }
+
+  .category-filter label {
+    font-size: 0.9rem;
+  }
+
+  .category-filter select {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-filter {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .category-filter label {
+    margin-bottom: 8px;
+  }
+
+  .category-filter select {
+    min-height: 44px;
+    padding: 10px 12px;
+  }
 }
 </style>

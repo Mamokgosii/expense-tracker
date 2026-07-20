@@ -255,7 +255,6 @@ h1 {
   gap: 24px;
 }
 
-/* Header above the expense list */
 .expenses-header {
   display: flex;
   justify-content: space-between;
@@ -285,12 +284,10 @@ h1 {
   max-width: 350px;
 }
 
-/* Sort Dropdown */
 .expenses-header select {
   min-width: 160px;
 }
 
-/* Tablet */
 @media (max-width: 1024px) {
   .dashboard {
     grid-template-columns: 1fr;
@@ -302,7 +299,6 @@ h1 {
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   .app {
     padding: 16px;
@@ -334,7 +330,6 @@ h1 {
   }
 }
 
-/* Small Phones */
 @media (max-width: 480px) {
   .app {
     padding: 12px;

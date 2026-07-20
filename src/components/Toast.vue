@@ -25,8 +25,10 @@ defineProps<{
 
   min-width: 300px;
   max-width: 400px;
+  width: calc(100% - 48px);
 
   padding: 16px 20px;
+
   border-radius: 10px;
 
   color: white;
@@ -42,7 +44,7 @@ defineProps<{
 }
 
 .info {
-  background: #16a34a;
+  background: #2563eb;
 }
 
 .error {
@@ -64,5 +66,31 @@ defineProps<{
 .toast-leave-from {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .toast {
+    top: 20px;
+    right: 20px;
+    left: 20px;
+
+    width: auto;
+    min-width: auto;
+    max-width: none;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .toast {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
 }
 </style>
