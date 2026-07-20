@@ -1,46 +1,63 @@
 # Expense Tracker
 
-A simple and intuitive expense tracking application built with Vue.js that helps users manage their spending by recording, viewing, editing, and categorising expenses.
+A responsive expense tracking application built with Vue 3, TypeScript and Pinia. The application allows users to record, manage and analyse their expenses through a simple and easy-to-use interface.
 
-## Goal
+## Live Demo
 
-Allow users to track their expenses and gain insights into how much they have spent over time.
+Coming soon...
+
+## Project Overview
+
+The Expense Tracker was developed to help users manage their day-to-day spending. Many people find it difficult to keep track of their expenses, making it harder to understand where their money is going. This application provides a simple and user-friendly way to record, organise and review expenses. It includes features such as search, filtering, sorting, summary statistics and data visualisation to help users better understand their spending habits.
 
 ## Features
 
-* Add an expense
-* View all expenses
-* Edit an existing expense
-* Delete an expense
-* Filter expenses by category
-* View total expenses
+- Add new expenses
+- Edit existing expenses
+- Delete expenses with a confirmation modal
+- Form validation
+- Search expenses by description
+- Filter expenses by category
+- Sort expenses by date
+- View total expenses
+- View expense statistics
+- View spending by category using a pie chart
+- Toast notifications for user actions
+- Local storage persistence
+- Responsive design for desktop, tablet and mobile devices
 
-## Expense Fields
+## Expense Details
 
 Each expense contains the following information:
 
-* **Description** – A brief description of the expense
-* **Amount** – The amount spent
-* **Category** – The category of the expense (e.g. Food, Transport, Utilities)
-* **Date** – The date on which the expense occurred
+- Description
+- Amount
+- Category
+- Date
 
-## Tech Stack
+## Technologies Used
 
-* Vue 3
-* TypeScript
-* Pinia
-* Vite
+- Vue 3
+- TypeScript
+- Pinia
+- Vite
+- Chart.js
+- Vue ChartJS
+- CSS
 
-## Planned Enhancements
+## Key Learning Outcomes
 
-* Form validation
-* Local storage persistence
-* Responsive user interface
-* Expense statistics and visualisations
-* Search and sorting functionality
+This project helped me strengthen my skills in:
 
-## Project Status
-* Currently in Development
+- Vue 3 Composition API
+- TypeScript
+- State management with Pinia
+- Component-based architecture
+- Responsive web design
+- Data visualisation using Chart.js
+- Local storage
+- Form validation
+- Building reusable and maintainable components
 
 ## Project Setup
 
